@@ -1,18 +1,23 @@
-// Example ping-pong with Embed
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+// ./commands/ping.js
 
-const embedPing = new EmbedBuilder()
-	.setTitle('Ping!')
-	.addFields(
-		{ name: 'Ping', value: 'Pong!'},
-	);
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const log = require("../utils/logger");
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
-	async execute(interaction) {
-		//await interaction.reply('Pong!');
-		await interaction.reply({ embeds: [embedPing] });
-	},
+  data: new SlashCommandBuilder()
+    .setName("ping")
+    .setDescription("Replies with Pong!"),
+
+  /**
+   * @param {import('discord.js').ChatInputCommandInteraction} interaction
+   */
+  async execute(interaction) {
+    log.info(`/${interaction.commandName} used by ${interaction.user?.tag}`);
+
+    const embed = new EmbedBuilder()
+      .setTitle("Ping!")
+      .addFields({ name: "Ping", value: "Pong!" });
+
+    await interaction.reply({ embeds: [embed] });
+  },
 };

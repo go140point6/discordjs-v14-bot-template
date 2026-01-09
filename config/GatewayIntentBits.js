@@ -1,3 +1,16 @@
-const { GatewayIntentBits } = require('discord.js');
+// ./config/GatewayIntentBits.js
+const { GatewayIntentBits } = require("discord.js");
 
-module.exports.GatewayIntentBits = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
+/**
+ * Centralized gateway intents for the bot.
+ * Add or remove intents here as features evolve.
+ */
+const intents = [
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.MessageContent,
+];
+
+module.exports = {
+  GatewayIntentBits: intents,
+};
